@@ -1,18 +1,19 @@
-$(document).ready(function () {
 $("#productReviews").append( '<hr class="product-section-line">' );
 $("#productReviews").append( '<h3 style="color:orange"> اضافه شده توسط T4A</h3>' );
 $("#productReviews").append( '<textarea id="txtAreaMSG" name="txtAreaMSG" rows="3" cols="70" style="border-color: black; background-color:orange;"> </textarea>' )
 $("#productReviews").append( '<button type="button" class="btn btn-warning" id="btnMSG" name="btnMSGName" onclick="textAreaBtnClickFunction()"> ارسال به همه </button>' );
-});
+
 
 function textAreaBtnClickFunction(offset = 0){
 
 var authToken = "Bearer "+ readCookie('accessToken');
 
+var productId = window.location.href.substr(window.location.href.indexOf('product/')+8, 6);
+
 $.ajax({
 	type: 'POST',
 	url: 'https://api.basalam.com/user',
-	data: {"variables": {"productId":779277,"offset":offset,"limit":50}, "query":"query prodcutReviews($productId: ID!, $offset: Int, $limit: Int) { product(id: $productId) { reviews(filter: { limit: $limit, offset: $offset }) { totalCount resultCount reviews { id star hashId createdAt isPublic description productId likeCount dislikeCount isLikedByCurrentUser isDislikedByCurrentUser reasons{ id title type } photo(size:MEDIUM) { url } photoLarge: photo(size: LARGE){ url } product { id name price vendor { name identifier id } } user { id name hashId username avatar(size:SMALL) { url } } answers{ id description createdAt user { id name hashId username avatar(size: MEDIUM) { url } } } } } } }"},
+	data: {"variables": {"productId":productId,"offset":offset,"limit":50}, "query":"query prodcutReviews($productId: ID!, $offset: Int, $limit: Int) { product(id: $productId) { reviews(filter: { limit: $limit, offset: $offset }) { totalCount resultCount reviews { id star hashId createdAt isPublic description productId likeCount dislikeCount isLikedByCurrentUser isDislikedByCurrentUser reasons{ id title type } photo(size:MEDIUM) { url } photoLarge: photo(size: LARGE){ url } product { id name price vendor { name identifier id } } user { id name hashId username avatar(size:SMALL) { url } } answers{ id description createdAt user { id name hashId username avatar(size: MEDIUM) { url } } } } } } }"},
 	beforeSend: function(xhr) {
 		xhr.setRequestHeader("Authorization", authToken)
 	}, success: function(data){
