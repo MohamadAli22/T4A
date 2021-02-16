@@ -1,8 +1,9 @@
+$(document).ready(function () {
 $("#productReviews").append( '<hr class="product-section-line">' );
 $("#productReviews").append( '<h3 style="color:orange"> اضافه شده توسط T4A</h3>' );
 $("#productReviews").append( '<textarea id="txtAreaMSG" name="txtAreaMSG" rows="3" cols="70" style="border-color: black; background-color:orange;"> </textarea>' )
 $("#productReviews").append( '<button type="button" class="btn btn-warning" id="btnMSG" name="btnMSGName" onclick="textAreaBtnClickFunction()"> ارسال به همه </button>' );
-
+});
 
 function textAreaBtnClickFunction(offset = 0){
 
