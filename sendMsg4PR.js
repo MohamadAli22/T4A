@@ -53,7 +53,7 @@ $.ajax({
 
 		if (data.data.product.reviews.totalCount > offset+50 ) {
 			console.log('offset = '+offset);
-			textAreaBtnClickFunction(offset+50);
+			setTimeout(() => {  textAreaBtnClickFunction(offset+50); }, 1000);
 		}else{
 			alert("تعداد"+ data.data.product.reviews.totalCount+ " پیام ارسال گردید.");
 		}
