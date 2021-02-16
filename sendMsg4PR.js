@@ -2,10 +2,10 @@ $(document).ready(function () {
 $("#productReviews").append( '<hr class="product-section-line">' );
 $("#productReviews").append( '<h3 style="color:orange"> اضافه شده توسط T4A</h3>' );
 $("#productReviews").append( '<textarea id="txtAreaMSG" name="txtAreaMSG" rows="3" cols="70" style="border-color: black; background-color:orange;"> </textarea>' )
-$("#productReviews").append( '<button type="button" class="btn btn-warning" id="btnMSG" name="btnMSGName" onclick="textAreaBtnClickFunction()"> ارسال به همه </button>' );
+$("#productReviews").append( '<button type="button" class="btn btn-warning" id="btnMSG" name="btnMSGName" onclick="textAreaBtnClickFunction(0)"> ارسال به همه </button>' );
 });
 
-function textAreaBtnClickFunction(offset = 0){
+function textAreaBtnClickFunction(offset){
 
 var authToken = "Bearer "+ readCookie('accessToken');
 
@@ -51,8 +51,11 @@ $.ajax({
 })
 		}
 
-		if (data.product.reviews.totalCount > offset+50 ) {
-			test(offset+50);
+		if (data.data.product.reviews.totalCount > offset+50 ) {
+			console.log('offset = '+offset);
+			textAreaBtnClickFunction(offset+50);
+		}else{
+			alert("تعداد"+ data.data.product.reviews.totalCount+ " پیام ارسال گردید.");
 		}
 	}
 })
