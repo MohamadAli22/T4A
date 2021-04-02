@@ -74,6 +74,8 @@ $(document).ready(function () {
     'تریاک',
     'کامان',
     'دافی',
+    'Mnd',
+    'MND',
 
 
     'عتیقه',
