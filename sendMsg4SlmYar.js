@@ -143,7 +143,7 @@ $(document).ready(function () {
     });
   } else {
     $('#txtAreaMSG').val(
-      "سلام غرفه شما تایید شد. من سلامیار هستم و کمکتون میکنم بتونید فروش بالایی رو تجربه کنید. ویدیو آموزش مخصوص غرفه دار های تازه نفس: https://www.youtube.com/watch?v=4RBf4kqra4o   لینک خرید رایگان آموزش باسلام از سلامیاران عضو باسلام:https://karbalad.basalam.com/blog/salamyar-landing"
+      "لینک خرید رایگان آموزش باسلام از سلامیاران عضو باسلام: https://karbalad.basalam.com/blog/salamyar-landing"
     );
   }
 });
@@ -175,15 +175,16 @@ function textAreaBtnClickFunction() {
     success: function (data) {
       console.log('first ajax suc');
       let chatId = data.data.id;
-      let txtMSG = $('#txtAreaMSG').val();
+	  let name = data.data.data.contact.name;
+      let txtMSG = name+ " عزیز، غرفه شما فعال شد. " + $('#txtAreaMSG').val();
 
       $.ajax({
         type: 'POST',
         url: 'https://chat.basalam.com/v1/send_message',
         data: {
           chatId: chatId,
-          messageType: 'TEXT',
-          message: { text: txtMSG },
+          messageType: 'PICTURE',
+          message: { caption: txtMSG, fileIds: [8204864]},
         },
         beforeSend: function (xhr) {
           xhr.setRequestHeader('Authorization', authToken);
