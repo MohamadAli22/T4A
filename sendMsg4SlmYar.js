@@ -175,8 +175,14 @@ function textAreaBtnClickFunction() {
     success: function (data) {
       console.log('first ajax suc');
       let chatId = data.data.id;
-	  let name = data.data.data.contact.name;
-      let txtMSG = name+ " عزیز، غرفه شما فعال شد. " + $('#txtAreaMSG').val();
+      let name = data.data.data.contact.name;
+	 var txtMSG ;
+      if($('#txtAreaMSG').val().includes("نشد")){
+	       txtMSG = name+ " عزیز، " + $('#txtAreaMSG').val();
+      }else{
+	       txtMSG = name+ " عزیز، غرفه شما فعال شد. " + $('#txtAreaMSG').val();
+      }
+    
 
       $.ajax({
         type: 'POST',
