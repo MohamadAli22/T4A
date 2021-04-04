@@ -143,7 +143,7 @@ $(document).ready(function () {
     });
   } else {
     $('#txtAreaMSG').val(
-      "لینک خرید رایگان آموزش باسلام از سلامیاران عضو باسلام: https://karbalad.basalam.com/blog/salamyar-landing"
+      "لینک خرید *رایگان* آموزش غرفه داری و فروش از سلامیاران عضو باسلام: https://karbalad.basalam.com/blog/salamyar-landing"
     );
   }
 });
