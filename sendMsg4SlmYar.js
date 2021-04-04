@@ -177,7 +177,7 @@ function textAreaBtnClickFunction() {
       let chatId = data.data.id;
       let name = data.data.data.contact.name;
 	 var txtMSG ;
-      if($('#txtAreaMSG').val().includes("نشد")){
+      if($('#txtAreaMSG').val().includes("نشد") || $('#txtAreaMSG').val().includes("نباید")){
 	       txtMSG = name+ " عزیز، " + $('#txtAreaMSG').val();
       }else{
 	       txtMSG = name+ " عزیز، غرفه شما فعال شد. " + $('#txtAreaMSG').val();
