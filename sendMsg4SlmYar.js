@@ -19,7 +19,7 @@ $(document).ready(function () {
 
 
   let forbidenWords = [
-    'نانوسان ',
+    'نانوسان',
     'سی ین ',
     'امبیل ',
     'بیز ',
