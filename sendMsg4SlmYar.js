@@ -75,6 +75,7 @@ $(document).ready(function () {
     'کامان',
     'دافی',
     'Mnd',
+    'mnd',
     'MND',
 	  'اوریفیلیم',
 
@@ -137,7 +138,7 @@ $(document).ready(function () {
 
   if (hasProblem) {
     $('#txtAreaMSG').val(
-      'سلام از طرف باسلام خدمتتون پیام میدم. متون غرفه شما جهت تایید نباید حاوی کلمات زیر باشد لطفا این کلمات را در زمان 24 ساعت آینده ویرایش کنید. سپاس : '
+      'سلام از طرف باسلام خدمتتون پیام میدم. متون غرفه شما جهت تایید نباید حاوی کلمات زیر باشد لطفا این کلمات را در زمان 12 ساعت آینده ویرایش کنید. سپاس : '
     );
     problemQueue.forEach(function (element, index) {
       $('#txtAreaMSG').val($('#txtAreaMSG').val() + ' - ' + element);
@@ -176,12 +177,13 @@ function textAreaBtnClickFunction() {
     success: function (data) {
       console.log('first ajax suc');
       let chatId = data.data.id;
-      let name = data.data.data.contact.name;
+      let name = data.data.data.contact.name +" غرفه دار محترم ,  "+document.querySelector("body > div.container.information > h1").textContent;
+	    
 	 var txtMSG ;
       if($('#txtAreaMSG').val().includes("نشد") || $('#txtAreaMSG').val().includes("نباید")){
 	       txtMSG = name+ " عزیز، " + $('#txtAreaMSG').val();
       }else{
-	       txtMSG = name+ " عزیز، غرفه شما فعال شد. " + $('#txtAreaMSG').val();
+	       txtMSG = name+ "  غرفه شما فعال شد. " + $('#txtAreaMSG').val();
       }
     
 
