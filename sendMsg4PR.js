@@ -9,7 +9,7 @@ function textAreaBtnClickFunction(offset){
 
 var authToken = "Bearer "+ readCookie('accessToken');
 
-var productId = window.location.href.substr(window.location.href.indexOf('product/')+8, 6);
+var productId = window.location.href.substr(window.location.href.indexOf('product/')+8);
 
 $.ajax({
 	type: 'POST',
