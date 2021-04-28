@@ -242,6 +242,7 @@ function scanPage(){
 	  'مکمل بدنسازی',
 	  'گینر ',
 	  'تکسوو',
+	  'انواع ',
 '111 گرم',
 'شفا',
 
@@ -322,6 +323,8 @@ function textAreaBtnClickFunction3(){
     event_enum=16
     value=70 //72(اعلام اصلاحات)  74(غ ب) 70)(تماس موفق)
     
+    $('#btnMSG3').attr('disabled', '');
+
  $.ajax({
         type: 'POST',
         url: 'https://salamyar.basalam.com/api/add-vendor-event',
