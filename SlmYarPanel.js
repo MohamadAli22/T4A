@@ -1,8 +1,9 @@
 // Type your JavaScript code here.
-login()
+
 shopArray = [];
 name = ""; 
 color = ""; 
+login();
 
 
 function login(){
@@ -33,7 +34,6 @@ color= "#FEA889"
     name = "خانم قاسمی"
     color= "#e0c061"
 }
-$("nav:has(img)").append('<a style="color:white" onclick="resetLogin()" href="#">'+name+'</a>');
     
 $("nav").removeClass("bg-dark");
 $('nav').attr("style", "background-color:"+color);
@@ -49,8 +49,12 @@ function resetLogin(){
 function getShops(id){
     if(document.title == 'سلام‌یار - لیست غرفه‌های تحت آموزش'){
         $.get("https://magharaat.ir/public/getMyShops/"+id, function(data, status){
+            console.log('hh '+status);
         shopArray = data.result;
-        console.log(data.result);
+        console.log(data);
+        name = name + "(" + data.moreInfo  +")";
+        $("nav:has(img)").append('<a style="color:white" onclick="resetLogin()" href="#">'+name+'</a>');
+        
         $("th:first-child").each(function(index, parent) {
             $(parent).attr("style", "background-color:#FF6962");
         });
@@ -65,4 +69,3 @@ function getShops(id){
     });
     } 
 }
-
