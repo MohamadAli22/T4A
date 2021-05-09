@@ -1,3 +1,8 @@
+// Type your JavaScript code here.
+
+
+
+
 
 let authToken = 'Bearer ' + readCookie('accessToken');
 
@@ -336,6 +341,24 @@ function textAreaBtnClickFunction3(){
     value=70 //72(اعلام اصلاحات)  74(غ ب) 70)(تماس موفق)
     
     $('#btnMSG3').attr('disabled', '');
+	
+	if(document.querySelector("body > div.container.information > p > a").text.substr(20).search('.com')!=-1 || document.querySelector("body > div.container.information > p > a").text.substr(20).search('.ir')!=-1){
+        console.log('link');
+		$.ajax({
+        type: 'POST',
+        url: 'https://chat.basalam.com/v1/send_message',
+        data: {
+          chatId: '9202369',
+          messageType: 'TEXT',
+          message: { text: window.location.href},
+        },
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader('Authorization', authToken);
+        },
+        success: function (data) {            
+        },
+      });
+	}
 
  $.ajax({
         type: 'POST',
@@ -363,3 +386,5 @@ function textAreaBtnClickFunction3(){
       });
 
 }
+
+
