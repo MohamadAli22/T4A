@@ -1,9 +1,3 @@
-// Type your JavaScript code here.
-
-
-
-
-
 let authToken = 'Bearer ' + readCookie('accessToken');
 
 $(document).ready(function () {
