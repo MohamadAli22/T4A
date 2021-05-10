@@ -336,7 +336,7 @@ function textAreaBtnClickFunction3(){
     
     $('#btnMSG3').attr('disabled', '');
 	
-	if(document.querySelector("body > div.container.information > p > a").text.substr(20).search('.') != -1){
+	if(document.querySelector("body > div.container.information > p > a").text.substr(20).search('.') > 0){
         console.log('link');
 		$.ajax({
         type: 'POST',
