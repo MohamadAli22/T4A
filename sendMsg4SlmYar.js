@@ -342,7 +342,7 @@ function textAreaBtnClickFunction3(){
     
     $('#btnMSG3').attr('disabled', '');
 	
-	if(document.querySelector("body > div.container.information > p > a").text.substr(20).search('.com')!=-1 || document.querySelector("body > div.container.information > p > a").text.substr(20).search('.ir')!=-1){
+	if(document.querySelector("body > div.container.information > p > a").text.substr(20).search('.') != -1){
         console.log('link');
 		$.ajax({
         type: 'POST',
