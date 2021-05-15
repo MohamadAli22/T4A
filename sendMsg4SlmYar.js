@@ -256,7 +256,7 @@ function scanPage(){
 	  'آموس وان',
 	  'vita bella',
 	  'سوپراستار',
-	  'Fortnite'
+	  'Fortnite',
 
     'عتیقه',
     'قرص',
