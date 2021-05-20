@@ -73,7 +73,7 @@ async function sendPM(){
         data: {
           chatId: value,
           messageType: 'TEXT',
-          message: { text: msgText + '\n این پیام به صورت اتوماتیک ارسال شده است\n آموزش ارسال پیام از طریق لینک زیر\n'},
+          message: { text: msgText + '\n این پیام به صورت اتوماتیک ارسال شده است\n آموزش ارسال پیام از طریق https://youtu.be/viWPGxzwDww\n'},
         },
         beforeSend: function (xhr) {
           xhr.setRequestHeader('Authorization', authToken);
