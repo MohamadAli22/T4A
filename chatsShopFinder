@@ -1,0 +1,25 @@
+// Type your JavaScript code here.
+
+if(document.title == 'باسلام | باسلام'){
+
+
+$('.chat-messages-header').append(
+    '<a id="jj" href="#">دیدن غرفه</a>'
+  );
+  
+setInterval(function(){ 
+        var text = $('.chat-message-item--right').html();
+		if(text.includes('https://statics.basalam.com/public/conversation/photo/2104/Q7W6Y/cHoKwcLrVqOJaYCLIYQwodFQVe8Emz4Fw0PZpNMR.jpeg_1000X1000X70.jpeg')){
+			var v = text.substring(text.indexOf(',  غرفه')+8, text.indexOf('عزیز')-1);
+			document.getElementById("jj").href = 'https://salamyar.basalam.com/vendors?page-action=&filter_field%5B%5D=sv.vendor_title&filter_value%5B%5D='+v+'&filter_field%5B%5D=&filter_value%5B%5D=';
+			document.getElementById("jj").style.visibility = "visible";
+		}else{
+			console.log('taiid');
+			document.getElementById("jj").style.visibility = "hidden";
+		}
+		
+		 }, 2000);
+
+
+}
+
