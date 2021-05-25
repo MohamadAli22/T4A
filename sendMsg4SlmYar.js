@@ -210,6 +210,7 @@ function scanPage(){
     'پنبه ریز ',
     'الیکس ',
     'دایلکس',
+
     'لدورا',
     'Goldensand',
     'Sliverado',
@@ -230,6 +231,7 @@ function scanPage(){
     'داینامین',
     'Mnd',
     'mnd',
+'Amous',
     'MND',
 	  'ام ان دی',
     'دستگاه فشار خون',
