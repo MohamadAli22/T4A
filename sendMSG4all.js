@@ -41,11 +41,11 @@ function readChat(offset){
         },
         success: function (data) {
 			console.log(data.data.chats);
-            $('#statistics').text( offset+ data.data.chats.length +"/"+ data.data.totalCount);
+            $('#statistics').text( offset+ data.data.chats.length +"/"+ 2000);
 			data.data.chats.forEach((element) => { 
 				window.set.add(element.id);
 			} );
-			if(offset+250 < data.data.totalCount){
+			if(offset+250 < 2000){
 				readChat(offset+250);
 			}else{
                 console.log(set);
