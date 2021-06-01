@@ -7,6 +7,10 @@ $(document).ready(function () {
   $('.container.events').append(
     '<button type="button" class="btn btn-warning" id="btnMSG" name="btnMSGName" onclick="textAreaBtnClickFunction()"> ارسال پیام جعبه </button>'
   );
+	
+$('.btn-toolbar').append(
+    '<p id="ll" style="margin:12"></p>'
+  );
     $('.container.events').append(
     '<button type="button" class="btn btn-danger" id="btnMSG2" name="btnMSGName2" onclick="textAreaBtnClickFunction2()"> تعیین وضعیت و ارسال پیام غیر باسلامی  </button>'
   );
@@ -23,6 +27,15 @@ $('.container.events').append(
          document.execCommand("copy");  
     });
     $("[href^='tel']").removeAttr('href');
+	
+	$("#ll").text(document.querySelector("body > div.container.information > p > a").text.substr(20));
+    $("#ll").click(function() {
+         $(this).select();
+         document.execCommand("copy");  
+         setTimeout(function(){
+          window.open("https://vendor.basalam.com/dashboard", '_blank').focus();
+        },500);
+    });
 
 
     scanPage();
