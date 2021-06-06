@@ -355,7 +355,7 @@ function textAreaBtnClickFunction3(){
         type: 'POST',
         url: 'https://chat.basalam.com/v1/send_message',
         data: {
-          chatId: '9202369',
+          chatId: '11087289',
           messageType: 'TEXT',
           message: { text: window.location.href},
         },
