@@ -345,7 +345,7 @@ function textAreaBtnClickFunction3(){
     scanPage();
     vendor_id=window.location.href.substr(window.location.href.indexOf('vendor/')+7)
     event_enum=16
-    value=70 //72(اعلام اصلاحات)  74(غ ب) 70)(تماس موفق)
+    value=795 //72(اعلام اصلاحات)  74(غ ب) 70)(تماس موفق)
     
     $('#btnMSG3').attr('disabled', '');
 	
