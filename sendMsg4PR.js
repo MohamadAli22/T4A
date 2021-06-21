@@ -5,6 +5,8 @@ $("#productReviews").append( '<textarea id="txtAreaMSG" name="txtAreaMSG" rows="
 $("#productReviews").append( '<button type="button" class="btn btn-warning" id="btnMSG" name="btnMSGName" onclick="textAreaBtnClickFunction(0)"> ارسال به همه </button>' );
 });
 
+var sentSet = new Set();
+
 function textAreaBtnClickFunction(offset){
 
 var authToken = "Bearer "+ readCookie('accessToken');
@@ -24,7 +26,8 @@ $.ajax({
 			console.log(child);
 			hashId = child.user.hashId;
 
-				$.ajax({
+if(!sentSet.has(hashId)){				
+$.ajax({
 	type: 'POST',
 	url: 'https://chat.basalam.com/v1/create_private_chat',
 	data: {"hashId": hashId},
@@ -49,6 +52,8 @@ $.ajax({
 		})
 	}
 })
+sentSet.add(hashId);	
+}
 		}
 
 		if (data.data.product.reviews.totalCount > offset+50 ) {
