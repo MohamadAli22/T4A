@@ -1,3 +1,5 @@
+// Type your JavaScript code here.
+
 let authToken = 'Bearer ' + readCookie('accessToken');
 
 
@@ -24,6 +26,7 @@ $('div.container.container--mob').append(
     '<p id="statistics">statistics</p>'
  );
 var set = new Set();
+var sentSet = new Set();
 readChat(0);
 
 
@@ -40,12 +43,12 @@ function readChat(offset){
           xhr.setRequestHeader('Authorization', authToken);
         },
         success: function (data) {
-			console.log(data.data.chats);
-            $('#statistics').text( offset+ data.data.chats.length +"/"+ 2000);
+			console.log(data.data);
+            $('#statistics').text( offset+ data.data.chats.length);
 			data.data.chats.forEach((element) => { 
 				window.set.add(element.id);
 			} );
-			if(offset+250 < 2000){
+			if(data.data.chats.length!=0){
 				readChat(offset+250);
 			}else{
                 console.log(set);
@@ -59,27 +62,30 @@ async function sendPM(){
     msgText = $('#txtMSG').val();
     var ii=0;
     window.set.forEach((value, index) => { 
-        ii=ii+1;
         if(ii%2==0){
             $('#statistics').text(ii + " پیام ارسال شده ");
         }
         if(ii%500==0){
             for(i=0; i<1000000; i++){}
         }
-        $.ajax({
-        type: 'POST',
-        async:true,
-        url: 'https://chat.basalam.com/v1/send_message',
-        data: {
-          chatId: value,
-          messageType: 'TEXT',
-          message: { text: msgText + '\n این پیام به صورت اتوماتیک ارسال شده است\n آموزش ارسال پیام از طریق https://youtu.be/viWPGxzwDww\n'},
-        },
-        beforeSend: function (xhr) {
-          xhr.setRequestHeader('Authorization', authToken);
-        },
-        success: function (data) {            
-        },
-      });
+        if(!sentSet.has(value)){
+            ii=ii+1;
+            $.ajax({
+                    type: 'POST',
+                    async:true,
+                    url: 'https://chat.basalam.com/v1/send_message',
+                    data: {
+                    chatId: value,
+                    messageType: 'TEXT',
+                    message: { text: msgText + '\n این پیام به صورت اتوماتیک ارسال شده است\n آموزش ارسال پیام از طریق https://youtu.be/viWPGxzwDww\n'},
+                    },
+                    beforeSend: function (xhr) {
+                    xhr.setRequestHeader('Authorization', authToken);
+                    },
+                    success: function (data) {            
+                    },
+                });
+            sentSet.add(value);
+        }
     });
 }
