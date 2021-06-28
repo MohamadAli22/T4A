@@ -4,18 +4,26 @@ $(document).ready(function () {
   $('.container.events').append(
     '<textarea id="txtAreaMSG" name="txtAreaMSG" rows="4" cols="90" style="border-color: black;"> </textarea>'
   );
-  $('.container.events').append(
-    '<button type="button" class="btn btn-warning" id="btnMSG" name="btnMSGName" onclick="textAreaBtnClickFunction()"> ارسال پیام جعبه </button>'
-  );
-	
+
 $('.btn-toolbar').append(
     '<p id="ll" style="margin:12"></p>'
+  );
+
+  $('.container.events').append(
+    '<button type="button" class="btn btn-warning" id="btnMSG" name="btnMSGName" onclick="textAreaBtnClickFunction()"> ارسال پیام جعبه </button>'
   );
     $('.container.events').append(
     '<button type="button" class="btn btn-danger" id="btnMSG2" name="btnMSGName2" onclick="textAreaBtnClickFunction2()"> تعیین وضعیت و ارسال پیام غیر باسلامی  </button>'
   );
    $('.container.events').append(
     '<button type="button" class="btn btn-success" id="btnMSG3" name="btnMSGName2" onclick="textAreaBtnClickFunction3()"> تعیین وضعیت و ارسال پیام فعالی  </button>'
+  );
+
+  $('.container.events').append(
+    '<button type="button" class="btn btn-danger" id="btnMSG21" name="btnMSGName21" onclick="textAreaBtnClickFunction21()"> تعیین وضعیت و ارسال پیام تماس دوم نا موفق  </button>'
+  );
+  $('.container.events').append(
+    '<button type="button" class="btn btn-danger" id="btnMSG22" name="btnMSGName22" onclick="textAreaBtnClickFunction22()"> تعیین وضعیت و ارسال پیام اصلاحات انجام نشد  </button>'
   );
 
 $('.container.events').append(
@@ -27,8 +35,8 @@ $('.container.events').append(
          document.execCommand("copy");  
     });
     $("[href^='tel']").removeAttr('href');
-	
-	$("#ll").text(document.querySelector("body > div.container.information > p > a").text.substr(20));
+
+    $("#ll").text(document.querySelector("body > div.container.information > p > a").text.substr(20));
     $("#ll").click(function() {
          $(this).select();
          document.execCommand("copy");  
@@ -36,6 +44,7 @@ $('.container.events').append(
           window.open("https://vendor.basalam.com/dashboard", '_blank').focus();
         },500);
     });
+    
 
 
     scanPage();
@@ -49,7 +58,7 @@ $('.container.events').append(
 
 
 function checkboxCheck(){
-    var newM = ' \n دیگر اصلاحات مورد نیاز غرفه شما: ';
+    var newM = '\n غرفه شما تایید نشد. \n دیگر اصلاحات مورد نیاز غرفه شما: ';
     $('input').each(function () {
         if($(this).prop( "checked" )){
             if($(this).attr('id') == 'agahi' ){
@@ -57,7 +66,7 @@ function checkboxCheck(){
                 console.log('agahi');
             }
             if($(this).attr('id') == 'shabkei'){
-                newM = newM.concat(" محصولات شما بازاریابی شبکه ای هستند- ", " ");
+                newM = newM.concat("  محصولات شما بازاریابی شبکه ای هستند- ", " ");
                 console.log('shabkei');
             }
             if($(this).attr('id') == 'tafkik'){
@@ -66,7 +75,7 @@ function checkboxCheck(){
             }
         }
     });
-    if(newM != ' \n دیگر اصلاحات مورد نیاز غرفه شما: '){
+    if(newM != '\n غرفه شما تایید نشد. \n دیگر اصلاحات مورد نیاز غرفه شما: '){
         if($('#txtAreaMSG').val().includes('دعوت')){
             $('#txtAreaMSG').val('');
         }
@@ -184,6 +193,71 @@ function textAreaBtnClickFunction2(){
 }
 
 
+
+function textAreaBtnClickFunction21(){
+
+    vendor_id=window.location.href.substr(window.location.href.indexOf('vendor/')+7)
+    event_enum=16
+    value=794 //794 تماس دوم نا موفق
+    
+ $.ajax({
+        type: 'POST',
+        url: 'https://salamyar.basalam.com/api/add-vendor-event',
+        data: {
+          vendor_id: vendor_id,
+          event_enum: event_enum,
+          value: value,
+          text_value: ''
+        },
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader('Authorization', authToken);
+        },
+        success: function (data) {
+           console.log('done')
+          $('#txtAreaMSG').val(
+            'سلام غرفه شما تایید نشد. زیرا نیاز به اصلاح داشت و موفق به تماس با شما نشدیم. لطفا جهت پیگیری به همین  گفت و گو پاسخ دهید. سپاس. تیم باسلام.'
+            );
+
+            checkboxCheck();
+
+            textAreaBtnClickFunction('ارسال پیام غیر فعالی و تغییر وضعیت انجام شد');
+        },
+      });
+}
+
+
+
+function textAreaBtnClickFunction22(){
+
+    vendor_id=window.location.href.substr(window.location.href.indexOf('vendor/')+7)
+    event_enum=16
+    value=77 // 77 اصلاحات انجام نشد
+    
+ $.ajax({
+        type: 'POST',
+        url: 'https://salamyar.basalam.com/api/add-vendor-event',
+        data: {
+          vendor_id: vendor_id,
+          event_enum: event_enum,
+          value: value,
+          text_value: ''
+        },
+        beforeSend: function (xhr) {
+          xhr.setRequestHeader('Authorization', authToken);
+        },
+        success: function (data) {
+           console.log('done')
+          $('#txtAreaMSG').val(
+            'سلام غرفه شما تایید نشد. زیرا نیاز به اصلاح داشت و اصلاحات انجام نشد. لطفا جهت پیگیری به همین  گفت و گو پاسخ دهید. سپاس. تیم باسلام.'
+            );
+
+            checkboxCheck();
+
+            textAreaBtnClickFunction('ارسال پیام غیر فعالی و تغییر وضعیت انجام شد');
+        },
+      });
+}
+
 function scanPage(){
 
 
@@ -223,7 +297,6 @@ function scanPage(){
     'پنبه ریز ',
     'الیکس ',
     'دایلکس',
-
     'لدورا',
     'Goldensand',
     'Sliverado',
@@ -240,13 +313,14 @@ function scanPage(){
     'ردنایت',
     'رد نایت',
     'تریاک',
+    'کامان',
     'دافی',
     'داینامین',
     'Mnd',
     'mnd',
-'Amous',
     'MND',
 	  'ام ان دی',
+    'اوریفیلیم',
     'دستگاه فشار خون',
     'فشار سنج',
     'فشارسنج',
@@ -345,7 +419,7 @@ function textAreaBtnClickFunction3(){
     scanPage();
     vendor_id=window.location.href.substr(window.location.href.indexOf('vendor/')+7)
     event_enum=16
-    value=795 //72(اعلام اصلاحات)  74(غ ب) 70)(تماس موفق)
+    value=70 //72(اعلام اصلاحات)  74(غ ب) 70)(تماس موفق)
     
     $('#btnMSG3').attr('disabled', '');
 	
@@ -355,7 +429,7 @@ function textAreaBtnClickFunction3(){
         type: 'POST',
         url: 'https://chat.basalam.com/v1/send_message',
         data: {
-          chatId: '11087289',
+          chatId: '9202369',
           messageType: 'TEXT',
           message: { text: window.location.href},
         },
@@ -393,5 +467,3 @@ function textAreaBtnClickFunction3(){
       });
 
 }
-
-
