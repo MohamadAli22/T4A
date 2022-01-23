@@ -23,7 +23,7 @@ let txtPage = $("#txtAreaPage").val();
 $.ajax({
 	type: 'POST',
 	url: 'https://api.basalam.com/user',
-	data: {"variables": {"productId":productId,"offset":(txtPage-1)*10,"limit":50}, "query":"query prodcutReviews($productId: ID!, $offset: Int, $limit: Int) { product(id: $productId) { reviews(filter: { limit: $limit, offset: $offset }) { totalCount resultCount reviews { id star hashId createdAt isPublic description productId likeCount dislikeCount isLikedByCurrentUser isDislikedByCurrentUser reasons{ id title type } photo(size:MEDIUM) { url } photoLarge: photo(size: LARGE){ url } product { id name price vendor { name identifier id } } user { id name hashId username avatar(size:SMALL) { url } } answers{ id description createdAt user { id name hashId username avatar(size: MEDIUM) { url } } } } } } }"},
+	data: {"variables": {"productId":productId,"offset":(txtPage-1)*10,"limit":10}, "query":"query prodcutReviews($productId: ID!, $offset: Int, $limit: Int) { product(id: $productId) { reviews(filter: { limit: $limit, offset: $offset }) { totalCount resultCount reviews { id star hashId createdAt isPublic description productId likeCount dislikeCount isLikedByCurrentUser isDislikedByCurrentUser reasons{ id title type } photo(size:MEDIUM) { url } photoLarge: photo(size: LARGE){ url } product { id name price vendor { name identifier id } } user { id name hashId username avatar(size:SMALL) { url } } answers{ id description createdAt user { id name hashId username avatar(size: MEDIUM) { url } } } } } } }"},
 	beforeSend: function(xhr) {
 		xhr.setRequestHeader("Authorization", authToken)
 	}, success: function(data){
